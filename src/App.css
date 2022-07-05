@@ -1,0 +1,14 @@
+.ship-basic {
+    padding: 15px;
+    margin: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.ship-card {
+    padding: 15px;
+    width: max-content;
+    margin: 10px;
+    border: 2px solid rgb(122, 28, 28);
+    border-radius: 5px;
+}

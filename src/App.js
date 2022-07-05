@@ -1,24 +1,44 @@
 import React from 'react';
 import './App.css';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useParams } from 'react'
 import axios from 'axios';
+import GetShips from "./components/GetShips";
+import CompleteShip from "./components/CompleteShip"
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
 
 function App() {
 
-  const [starships, setStarships] = useState([])
+  const [starship, setStarship] = useState([])
 
   useEffect(() => {
     axios.get('https://swapi.dev/api/starships/')
-      .then(elements => {
-        /*elements.map((element) => console.log(element.data.results))*/
-      })
-      }, []) 
-      
+      .then(element => setStarship(element.data.results))
+  }, [])
 
-    console.log(starships)
+  
 
-    return (
-      <div>hi</div>)
+  console.log(starship)
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/"
+          element={<GetShips
+            ships={starship} />}>
+        </Route>
+        <Route path="/ship/:name"
+          element={<CompleteShip
+            ships={starship} />} />
+      </Routes>
+    </BrowserRouter>
+
+  )
+
 
 }
 
