@@ -6,8 +6,8 @@ const GetShips = ({ ships }) => {
     let text = ships.map((element, i) =>
         <Link to={`/ship/${element.name}`} key={i + 'ship'}>
             <div className='ship-basic'>
-                <div> <strong>Nom de la nau:</strong> {element.name}</div>
-                <div> <strong> Model de la nau:</strong> {element.model}</div>
+                <div className='title'>{element.name.toUpperCase()}</div>
+                <div className='model'>{element.model}</div>
             </div>
         </Link>
     )

@@ -4,6 +4,7 @@ import { useState, useEffect, useParams } from 'react'
 import axios from 'axios';
 import GetShips from "./components/GetShips";
 import CompleteShip from "./components/CompleteShip"
+import NavComponent from "./components/NavComponent"
 import {
   BrowserRouter,
   Routes,
@@ -20,32 +21,37 @@ function App() {
       .then(element => setStarship(element.data.results))
   }, [])
 
-  
-
   console.log(starship)
 
   return (
     <BrowserRouter>
       <Routes>
+
         <Route path="/"
-          element={<GetShips
-            ships={starship} />}>
-        </Route>
+          element={
+            <>
+              <NavComponent />
+              <div className='div-ships1'>
+                <GetShips
+                  ships={starship} />
+              </div>
+            </>
+          }
+        />
         <Route path="/ship/:name"
-          element={<CompleteShip
-            ships={starship} />} />
+          element={
+            <>
+              <NavComponent />
+              <div className='div-ships2'>
+                <CompleteShip
+                  ships={starship} />
+              </div>
+            </>
+          }
+        />
       </Routes>
     </BrowserRouter>
-
   )
-
-
 }
 
 export default App;
-
-
-/*- Nom de nau.
-
-- Model 
-*/
