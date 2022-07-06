@@ -4,6 +4,7 @@ import { useState, useEffect, useParams } from 'react'
 import axios from 'axios';
 import GetShips from "./components/GetShips";
 import CompleteShip from "./components/CompleteShip"
+import Home from "./components/Home"
 import NavComponent from "./components/NavComponent"
 import {
   BrowserRouter,
@@ -27,7 +28,7 @@ function App() {
     <BrowserRouter>
       <Routes>
 
-        <Route path="/"
+        <Route path="/starships"
           element={
             <>
               <NavComponent />
@@ -42,10 +43,18 @@ function App() {
           element={
             <>
               <NavComponent />
-              <div className='div-ships2'>
-                <CompleteShip
-                  ships={starship} />
-              </div>
+
+              <CompleteShip
+                ships={starship} />
+
+            </>
+          }
+        />
+        <Route path="/"
+          element={
+            <>
+            <NavComponent />
+              <Home />
             </>
           }
         />
