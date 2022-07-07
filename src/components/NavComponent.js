@@ -12,20 +12,20 @@ const NavComponent = () => {
 
     return (
         <nav >
-            <div class="parent">
-                <div class="logo" ><img src={logo} /></div>
+            <div className="parent">
+                <div className="logo" ><img src={logo} /></div>
             </div>
-            <div class="div3">
+            <div className="div3">
 
-                <Link to="/login" class="div2"  >
+                <Link to="/login" className="div2"  >
                     <div>LOGIN //</div>
                 </Link>
-                <Link to="/sign_up" class="div2"  >
+                <Link to="/sign_up" className="div2"  >
                     <div>SIGN UP</div>
                 </Link>
 
             </div>
-            <div class="centered">
+            <div className="centered">
 
                 <Link to="/" className="button" value="HOME" >
                     <div>HOME</div>
