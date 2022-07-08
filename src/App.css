@@ -3,50 +3,58 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-top: 1cm;
 }
+
 .welcome {
     display: flex;
-    flex-direction: column;   
+    flex-direction: column;
     align-items: center;
 }
+
 .parent {
     display: flex;
-    flex-direction: row;   
+    flex-direction: row;
     justify-items: center;
     align-items: center;
     justify-content: center;
-  
+
 }
+
 .logo2 {
     display: flex;
     flex-direction: column;
     border-bottom: 5px solid rgb(226, 106, 120);
-    width:100%;
-    height:auto;
+    width: 100%;
+    height: auto;
 }
-.div1 { 
+
+.div1 {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.div2 { 
+
+.div2 {
     display: flex;
     margin-right: 10px;
-    color: rgb(148, 151, 151); 
+    color: rgb(148, 151, 151);
 }
-.div3 { 
+
+.div3 {
     display: flex;
     position: absolute;
-    top: 120px; right: 40px;
+    top: 120px;
+    right: 40px;
     font-size: larger;
 }
 
 .button {
     padding: 15px;
-    color: rgb(207, 218, 218);  
+    color: rgb(207, 218, 218);
     background-color: rgb(16, 16, 16);
-    border-right: 1px solid rgb(52, 50, 50); 
-    border-left: 1px solid rgb(52, 50, 50); 
+    border-right: 1px solid rgb(52, 50, 50);
+    border-left: 1px solid rgb(52, 50, 50);
 }
+
 .div-ships1 {
     display: flex;
     flex-direction: column;
@@ -61,11 +69,11 @@ body {
 .centered {
     margin-top: 1cm;
     margin-bottom: 15px;
-    display:flex ;
+    display: flex;
     flex-direction: row;
     align-items: center;
-    border-bottom: 1px solid rgb(52, 50, 50); 
-    border-top: 2px solid rgb(52, 50, 50); 
+    border-bottom: 1px solid rgb(52, 50, 50);
+    border-top: 2px solid rgb(52, 50, 50);
     justify-content: center;
 }
 
@@ -75,16 +83,18 @@ body {
     align-content: center;
     width: 50%;
     color: rgb(207, 218, 218);
-    
+
 }
-.color-ship {    
-    color: rgb(207, 218, 218); 
+
+.color-ship {
+    color: rgb(207, 218, 218);
     display: flex;
-    flex-direction: column;   
+    flex-direction: column;
     align-items: center;
 
-    
+
 }
+
 .ship-basic {
     background-color: rgb(34, 34, 34);
     padding: 20px;
@@ -92,11 +102,12 @@ body {
     border: none;
     border-radius: 5px;
     width: 25cm;
-    
+
 }
+
 .justify {
     display: flex;
-    flex-direction: column;   
+    flex-direction: column;
     align-items: center;
     color: rgb(207, 218, 218);
     align-items: flex-start;
@@ -104,7 +115,7 @@ body {
 
 .card-justify {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
 }
 
@@ -143,7 +154,47 @@ a:link {
     text-decoration: none;
 }
 
-.button:active{
-    border-bottom-color:blue;
+.button:active {
+    border-bottom-color: blue;
     font-weight: 300;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+
+.login-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2cm;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.placeholder {
+    margin: 5px;
+    width: 8cm;
+    text-align: center;
+    height: 0.75cm;
+
+}
+
+.button-login {
+    padding: 8px;
+    color: rgb(207, 218, 218);
+    background-color: rgb(68, 77, 76);
+    border-right: 1px solid rgb(52, 50, 50);
+    border-left: 1px solid rgb(52, 50, 50);
+    border-radius: 8px;
+    margin-top: 1cm;
+    width: 4cm;
+}
+
+.button-login:hover {
+    background-color: rgb(37, 176, 160);
+    color: black;
 }

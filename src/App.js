@@ -6,6 +6,8 @@ import GetShips from "./components/GetShips";
 import CompleteShip from "./components/CompleteShip"
 import Home from "./components/Home"
 import NavComponent from "./components/NavComponent"
+import Login from "./components/LoginComponent"
+import SignUp from "./components/SignUpComponent"
 import {
   BrowserRouter,
   Routes,
@@ -23,6 +25,14 @@ function App() {
   }, [])
 
   console.log(starship)
+
+
+
+
+
+
+
+
 
   return (
     <BrowserRouter>
@@ -53,8 +63,25 @@ function App() {
         <Route path="/"
           element={
             <>
-            <NavComponent />
+              <NavComponent />
               <Home />
+
+            </>
+          }
+        />
+        <Route path="/login"
+          element={
+            <>
+              <NavComponent />
+              <Login />
+            </>
+          }
+        />
+        <Route path="/sign_up"
+          element={
+            <>
+              <NavComponent />
+              <SignUp />
             </>
           }
         />
