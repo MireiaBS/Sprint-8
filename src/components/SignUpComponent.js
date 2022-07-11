@@ -1,20 +1,39 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import '../App.css';
+import { useLocalStorage } from "./useLocalStorage";
 
 const SignUp = () => {
 
+    const [text, setText] = useLocalStorage('Login:', '');
     const [nameRegister, setNameRegister] = useState('')
-    const [passwordRegister, setPasswordRegister] = useState('')
+    const [passwordRegister, setPasswordRegister] = useState()
+    const [completeLogin, setCompleteLogin] = useState([])
 
+    useEffect(() => {
+        setText(completeLogin)
+      
+    }, [completeLogin])
+    
     const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('perfect submit!')
+        if ((nameRegister || passwordRegister) === '') {
+            alert('Debe completar los campos')
+            e.preventDefault();
+        } else {
+            //alert('Te has registrado correctamente!')
+            let newLogin = []
+            newLogin = [...completeLogin,nameRegister+passwordRegister]
+            setCompleteLogin(newLogin)
+            //console.log('Complete login', completeLogin, 'newLogin:', newLogin)    
+            
+        }
 
+        console.log('perfect submit!')       
+      
     };
     return (
         <div className="login-div">
-            <form  className='login'>
+            <form className='login'>
                 <input
                     className="placeholder"
                     type='text'
@@ -24,7 +43,7 @@ const SignUp = () => {
                     onChange={({ target }) => setNameRegister(target.value)}
                 />
                 <input
-                    type='text'
+                    type='password'
                     className="placeholder"
                     value={passwordRegister}
                     name="Password"

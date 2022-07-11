@@ -2,19 +2,19 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import logo from "../images/logo.png"
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { act } from "react-dom/test-utils";
+import { useState } from "react";
 
 const CompleteShip = ({ ships }) => {
 
-    const [filmsLinks, setFilmsLinks] = useState([])
+    const [films, setFilms] = useState([])
+    const [pilots, setPilots] = useState([])
     const { name } = useParams();
 
-       
+
 
     const getFilms = async () => {
         let films = ships.filter(element => element.name === name)
-        .map((element) => (element.films)) 
+            .map((element) => (element.films))
 
         const promises = [];
         films[0].forEach(element => {
@@ -23,14 +23,14 @@ const CompleteShip = ({ ships }) => {
         });
         const results = await Promise.all(promises);
         const actualDatas = results.map((result) => result.data.title);
-        console.log('films:',actualDatas)
-        //return actualDatas;
+        setFilms(actualDatas)
+        return actualDatas;
 
     }
 
     const getPilots = async () => {
         let pilots = ships.filter(element => element.name === name)
-        .map((element) => (element.pilots)) 
+            .map((element) => (element.pilots))
 
         const promises = [];
         pilots[0].forEach(element => {
@@ -38,13 +38,16 @@ const CompleteShip = ({ ships }) => {
             promises.push(result);
         });
         const results = await Promise.all(promises);
-        const actualDatas = results.map(result => <p>{result.data.name}</p>);
-        console.log('pilots:',actualDatas)
-        //return actualDatas;
+        const actualDatas = results.map(result => result.data.name);
+        actualDatas.map(element => element)
+
+        setPilots(actualDatas);
+        return actualDatas;
 
     }
-    getFilms();
-    getPilots();
+
+    getFilms()
+    getPilots()
 
     let text = ships.filter(element => element.name === name)
         .map((ship, i) =>
@@ -62,37 +65,22 @@ const CompleteShip = ({ ships }) => {
                             <p>Capacity: {ship.cargo_capacity}</p>
                             <p>Cost in credits: {ship.cost_in_credits}</p>
                             <p>Crew: {ship.crew}</p>
-                            <p>Films: { }</p>
+
                             <p>Manufacturer: {ship.manufacturer}</p>
                             <p>Speed: {ship.max_atmosphering_speed} </p>
                             <p>Passengers: {ship.passengers}</p>
-                            <p>Pilots: </p>
+
                         </div>
-                        <div></div>
+                    </div>
+                    <div className="ordered">
+                        <div className="card-pilot">Films: {films.map((element,i) => <p key={i} >{element}</p>)}</div>
+                        <div className="card-pilot">Pilots: {pilots.map((element, i) => <p key={i} >{element}</p>)} </div>
                     </div>
                 </div >
-            </div>
+            </div >
         );
     return text;
 }
 
 export default CompleteShip;
 
-
-
-/* let data = await getData();
-
-function getData() {
-    return new Promise((resolve, reject) => {
-        let response = await axios.get(...)
-        let data = response.map()
-        ----
-        ----
-
-        resolve(data)
-    })
-
-} */
-
-
-/* console.log(getFilms()) */

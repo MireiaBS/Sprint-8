@@ -198,3 +198,11 @@ a:link {
     background-color: rgb(37, 176, 160);
     color: black;
 }
+.ordered {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.card-pilot {
+    margin-right: 1cm;
+}

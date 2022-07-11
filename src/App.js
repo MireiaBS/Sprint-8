@@ -8,6 +8,7 @@ import Home from "./components/Home"
 import NavComponent from "./components/NavComponent"
 import Login from "./components/LoginComponent"
 import SignUp from "./components/SignUpComponent"
+import { useLocalStorage } from './components/useLocalStorage';
 import {
   BrowserRouter,
   Routes,
@@ -23,16 +24,6 @@ function App() {
     axios.get('https://swapi.dev/api/starships/')
       .then(element => setStarship(element.data.results))
   }, [])
-
-  console.log(starship)
-
-
-
-
-
-
-
-
 
   return (
     <BrowserRouter>
