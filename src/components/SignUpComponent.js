@@ -5,15 +5,21 @@ import { useLocalStorage } from "./useLocalStorage";
 
 const SignUp = () => {
 
-    const [text, setText] = useLocalStorage('Login:', '');
+    const [text, setText] = useLocalStorage('Login', '');
     const [nameRegister, setNameRegister] = useState('')
     const [passwordRegister, setPasswordRegister] = useState()
-    const [completeLogin, setCompleteLogin] = useState([])
+    const [completeLogin, setCompleteLogin] = useState(text || [])
 
     useEffect(() => {
         setText(completeLogin)
       
     }, [completeLogin])
+
+    useEffect(() => {
+      localStorage.getItem('Login')    
+      
+    }, [])
+    
     
     const handleSubmit = (e) => {
         if ((nameRegister || passwordRegister) === '') {
