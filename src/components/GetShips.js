@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import Login from "./LoginComponent";
 
-const GetShips = ({ ships }) => {
+const GetShips = ({ ships,loged }) => {
 
 
     let text = ships.map((element, i) =>
@@ -12,7 +13,7 @@ const GetShips = ({ ships }) => {
         </Link>
     )
 
-    return text;
+    return loged ? text : <Login/>;
 }
 
 export default GetShips;

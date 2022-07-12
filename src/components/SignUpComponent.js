@@ -16,22 +16,19 @@ const SignUp = () => {
     }, [completeLogin])
 
     useEffect(() => {
-      localStorage.getItem('Login')    
+      localStorage.getItem('Login')   
       
-    }, [])
-    
+    }, [])    
     
     const handleSubmit = (e) => {
         if ((nameRegister || passwordRegister) === '') {
             alert('Debe completar los campos')
             e.preventDefault();
         } else {
-            //alert('Te has registrado correctamente!')
+            alert('Te has registrado correctamente!')
             let newLogin = []
             newLogin = [...completeLogin,nameRegister+passwordRegister]
             setCompleteLogin(newLogin)
-            //console.log('Complete login', completeLogin, 'newLogin:', newLogin)    
-            
         }
 
         console.log('perfect submit!')       

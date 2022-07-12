@@ -1,16 +1,26 @@
 
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import '../App.css';
-import { useLocalStorage } from "./useLocalStorage";
+import GetShips from "./GetShips";
+import SignUp from "./SignUpComponent";
 
-const Login = () => {
+const Login = ( {isIncluded} ) => {
 
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
+    const [loginComplete, setLoginComplete] = useState('')
+
+    useEffect(() => {
+      setLoginComplete(userName+password)
+    
+    }, [userName, password] )
+    
 
     const handleSubmit = () => {
-        console.log('Logueado!')
+       
+        isIncluded = localStorage.getItem('Login').includes(loginComplete)
+        isIncluded ? alert('Correct Login') : alert('This account is not registered. Please sign up.')
         
     };
     return (
@@ -39,7 +49,6 @@ const Login = () => {
                     value='LOGIN'
                 />
             </form>
-
         </div>
     )
 }
