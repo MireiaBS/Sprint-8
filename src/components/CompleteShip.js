@@ -24,7 +24,7 @@ const CompleteShip = ({ ships }) => {
         const results = await Promise.all(promises);
         const actualDatas = results.map((result) => result.data.title);
         setFilms(actualDatas)
-        return actualDatas;
+    
 
     }
 
@@ -42,7 +42,7 @@ const CompleteShip = ({ ships }) => {
         actualDatas.map(element => element)
 
         setPilots(actualDatas);
-        return actualDatas;
+       
 
     }
 

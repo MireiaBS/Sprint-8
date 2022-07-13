@@ -19,15 +19,27 @@ import {
 function App() {
 
   const [starship, setStarship] = useState([])
+  const [apiResult, setApiResult] = useState([])
   const [loged, setLoged] = useState(false);
 
   useEffect(() => {
     axios.get('https://swapi.dev/api/starships/')
-      .then(element => setStarship(element.data.results))
+      .then(element => 
+        setStarship(element.data.results))
+        
+       axios.get('https://swapi.dev/api/starships/')
+      .then(element => 
+        setApiResult(element.data))
   }, [])
+
+  
+       
 
   const isIncluded = false;
   if (isIncluded) { setLoged(true)}
+
+  
+  
 
   return (
     <BrowserRouter>
@@ -40,7 +52,9 @@ function App() {
               <div className='div-ships1'>
                 <GetShips
                   ships={starship}
-                  loged={loged} />
+                  loged={loged}
+                  api={apiResult} />
+                  
               </div>
             </>
           }
@@ -79,8 +93,10 @@ function App() {
             </>
           }
         />
+        
 
       </Routes>
+      
     </BrowserRouter>
   )
 }
