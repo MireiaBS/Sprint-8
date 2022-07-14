@@ -34,7 +34,7 @@ const CompleteShip = ({ result }) => {
             {
             setPicture(link)
             } else {
-            setPicture(logo)
+            setPicture('https://starwars-visualguide.com/assets/img/big-placeholder.jpg')
             }
         }
     
