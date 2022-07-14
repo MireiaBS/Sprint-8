@@ -8,7 +8,6 @@ import Home from "./components/Home"
 import NavComponent from "./components/NavComponent"
 import Login from "./components/LoginComponent"
 import SignUp from "./components/SignUpComponent"
-import { useLocalStorage } from './components/useLocalStorage';
 import {
   BrowserRouter,
   Routes,
@@ -22,24 +21,58 @@ function App() {
   const [apiResult, setApiResult] = useState([])
   const [loged, setLoged] = useState(false);
 
-  useEffect(() => {
-    axios.get('https://swapi.dev/api/starships/')
-      .then(element => 
-        setStarship(element.data.results))
-        
+  /* useEffect(() => {
+   
        axios.get('https://swapi.dev/api/starships/')
       .then(element => 
-        setApiResult(element.data))
-  }, [])
+        setStarship(element.data))
+  }, []) */
 
+  const [pages, setPages] = useState(1)
+  const [links, setLinks] = useState(['https://swapi.dev/api/starships/?page=1'])
+  const [result, setResult] = useState([])
+  const [show, setShow] = useState(true)
+
+
+  useEffect(() => {
+
+    let link = 'https://swapi.dev/api/starships/?page=' + pages.toString()
+    axios.get(link)
+      .then(element => {
+
+        const newLink = [...links, element.data.next]
+        setLinks(newLink)
+      }
+      )
+
+    links.map(element => {
+      axios.get(element)
+        .then(element => {
+
+          const newResult = [...result, element.data.results]
+          setResult(newResult)
+
+        })
+    })
+
+  }, [pages])
+
+  function chargeMore() {
+    setPages(pages + 1)
+    if (pages >= 3) {
+      setShow(false)
+    }
   
-       
+  }
+
+ 
+
 
   const isIncluded = false;
-  if (isIncluded) { setLoged(true)}
+  if (isIncluded) { setLoged(true) }
 
-  
-  
+
+
 
   return (
     <BrowserRouter>
@@ -51,10 +84,10 @@ function App() {
               <NavComponent />
               <div className='div-ships1'>
                 <GetShips
-                  ships={starship}
-                  loged={loged}
-                  api={apiResult} />
-                  
+                  result={result}
+                />
+                {show ? <input type='button' value='More!' onClick={chargeMore} className='button'></input> : <p>All Loaded</p>}
+
               </div>
             </>
           }
@@ -64,7 +97,7 @@ function App() {
             <>
               <NavComponent />
               <CompleteShip
-                ships={starship} />
+                result={result} />
             </>
           }
         />
@@ -80,8 +113,8 @@ function App() {
           element={
             <>
               <NavComponent />
-              <Login 
-              isIncluded={isIncluded}/>
+              <Login
+                isIncluded={isIncluded} />
             </>
           }
         />
@@ -93,10 +126,10 @@ function App() {
             </>
           }
         />
-        
+
 
       </Routes>
-      
+
     </BrowserRouter>
   )
 }
