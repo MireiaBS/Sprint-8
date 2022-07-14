@@ -44,47 +44,7 @@ const CompleteShip = ({ result }) => {
 
         })
     }
-
-
-    /* const getFilms = async () => {
-        let films = ships.filter(element => element.name === name)
-            .map((element) => (element.films))
- 
-        const promises = [];
-        films[0].forEach(element => {
-            const result = axios.get(element);
-            promises.push(result);
-        });
-        const results = await Promise.all(promises);
-        const actualDatas = results.map((result) => result.data.title);
-        setFilms(actualDatas)
-    
- 
-    }
- 
-    const getPilots = async () => {
-        let pilots = ships.filter(element => element.name === name)
-            .map((element) => (element.pilots))
- 
-        const promises = [];
-        pilots[0].forEach(element => {
-            const result = axios.get(element);
-            promises.push(result);
-        });
-        const results = await Promise.all(promises);
-        const actualDatas = results.map(result => result.data.name);
-        actualDatas.map(element => element)
- 
-        setPilots(actualDatas);
-       
-    
-    }
-  
-    */
-    //let a = ships.map(element => element.results)
-    // 
-
-    let text = result.flat().filter(element => element.name === name)
+ let text = result.flat().filter(element => element.name === name)
         .map((ship, i) =>
             <div key={i + name} className='card-justify'>
                 <div className='div-ships2'>
