@@ -2,20 +2,54 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import logo from "../images/logo.png"
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const CompleteShip = ({ ships }) => {
+
+const CompleteShip = ({ result }) => {
 
     const [films, setFilms] = useState([])
     const [pilots, setPilots] = useState([])
     const { name } = useParams();
 
+    useEffect(() => {
+        getFilms()
+        getPilots()
 
+    }, [])
 
     const getFilms = async () => {
-        let films = ships.filter(element => element.name === name)
+        let getFilms = result.flat().filter(element => element.name === name)
             .map((element) => (element.films))
 
+
+        await getFilms.flat().map(element => {
+            axios.get(element)
+                .then(element => {
+                    setFilms(film => film.concat(element.data.title))
+                })
+
+        })
+    }
+
+    const getPilots = async () => {
+        let getPilots = result.flat().filter(element => element.name === name)
+            .map((element) => (element.pilots))
+
+
+        await getPilots.flat().map(element => {
+            axios.get(element)
+                .then(element => {                   
+                    setPilots(pilot => pilot.concat(element.data.name))                   
+                })
+
+        })
+    }
+
+
+    /* const getFilms = async () => {
+        let films = ships.filter(element => element.name === name)
+            .map((element) => (element.films))
+ 
         const promises = [];
         films[0].forEach(element => {
             const result = axios.get(element);
@@ -25,13 +59,13 @@ const CompleteShip = ({ ships }) => {
         const actualDatas = results.map((result) => result.data.title);
         setFilms(actualDatas)
     
-
+ 
     }
-
+ 
     const getPilots = async () => {
         let pilots = ships.filter(element => element.name === name)
             .map((element) => (element.pilots))
-
+ 
         const promises = [];
         pilots[0].forEach(element => {
             const result = axios.get(element);
@@ -40,16 +74,17 @@ const CompleteShip = ({ ships }) => {
         const results = await Promise.all(promises);
         const actualDatas = results.map(result => result.data.name);
         actualDatas.map(element => element)
-
+ 
         setPilots(actualDatas);
        
-
+    
     }
+  
+    */
+    //let a = ships.map(element => element.results)
+    // 
 
-    getFilms()
-    getPilots()
-
-    let text = ships.filter(element => element.name === name)
+    let text = result.flat().filter(element => element.name === name)
         .map((ship, i) =>
             <div key={i + name} className='card-justify'>
                 <div className='div-ships2'>
@@ -65,21 +100,30 @@ const CompleteShip = ({ ships }) => {
                             <p>Capacity: {ship.cargo_capacity}</p>
                             <p>Cost in credits: {ship.cost_in_credits}</p>
                             <p>Crew: {ship.crew}</p>
-
                             <p>Manufacturer: {ship.manufacturer}</p>
                             <p>Speed: {ship.max_atmosphering_speed} </p>
                             <p>Passengers: {ship.passengers}</p>
-
                         </div>
                     </div>
                     <div className="ordered">
-                        <div className="card-pilot">Films: {films.map((element,i) => <p key={i} >{element}</p>)}</div>
-                        <div className="card-pilot">Pilots: {pilots.map((element, i) => <p key={i} >{element}</p>)} </div>
+                        <div className="card-pilot">Films: {films.filter((item, index) => {
+                            return films
+                                .indexOf(item) === index;
+                        }).
+                            map((element, i) => <p key={i} >{element}</p>)}</div>
+
+                        <div className="card-pilot">Pilots:
+                            {pilots.filter((item, index) => {
+                                return pilots
+                                    .indexOf(item) === index;
+                            })
+                                .map((element, i) => <p key={i} >{element}</p>)} </div>
                     </div>
                 </div >
             </div >
-        );
-    return text;
+        )
+
+    return text
 }
 
 export default CompleteShip;
