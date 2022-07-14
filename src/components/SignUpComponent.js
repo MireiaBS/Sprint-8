@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import '../App.css';
+
 import { useLocalStorage } from "./useLocalStorage";
 
 const SignUp = () => {
@@ -10,6 +11,7 @@ const SignUp = () => {
     const [passwordRegister, setPasswordRegister] = useState()
     const [completeLogin, setCompleteLogin] = useState(text || [])
 
+    
     useEffect(() => {
         setText(completeLogin)
       
@@ -28,13 +30,12 @@ const SignUp = () => {
             alert('Te has registrado correctamente!')
             let newLogin = []
             newLogin = [...completeLogin,nameRegister+passwordRegister]
-            setCompleteLogin(newLogin)
+            setCompleteLogin(newLogin)           
         }
+        console.log('perfect submit!')        
+    }
 
-        console.log('perfect submit!')       
-      
-    };
-    return (
+    let text2 = 
         <div className="login-div">
             <form className='login'>
                 <input
@@ -60,9 +61,9 @@ const SignUp = () => {
                     value='REGISTER'
                 />
             </form>
-
         </div>
-    )
+    
+    return text2;
 }
 
 export default SignUp;
