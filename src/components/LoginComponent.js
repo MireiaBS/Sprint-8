@@ -38,7 +38,7 @@ const Login = () => {
                     onChange={({ target }) => setUserName(target.value)}
                 />
                 <input
-                    type='text'
+                    type='password'
                     className="placeholder"
                     valye={password}
                     name="Password"

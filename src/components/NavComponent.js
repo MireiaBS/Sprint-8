@@ -1,10 +1,5 @@
 import logo from "../images/logo.png"
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Link
-} from "react-router-dom";
+import {Link} from "react-router-dom";
 import '../../src/App.css';
 
 
